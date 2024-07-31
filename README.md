@@ -10,7 +10,6 @@ npm install react-native-text-encryption
 
 ## Usage
 
-
 ```js
 import { multiply } from 'react-native-text-encryption';
 
@@ -18,7 +17,6 @@ import { multiply } from 'react-native-text-encryption';
 
 const result = await multiply(3, 7);
 ```
-
 
 ## Contributing
 
