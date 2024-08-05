@@ -6,7 +6,7 @@ type TextFieldProps = {
   label: string;
   placeholder: string;
   value: any;
-  setValue: React.Dispatch<React.SetStateAction<any>>;
+  setValue?: React.Dispatch<React.SetStateAction<any>>;
 };
 
 function TextField({ label, placeholder, setValue, value }: TextFieldProps) {

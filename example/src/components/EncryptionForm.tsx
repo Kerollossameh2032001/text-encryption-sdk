@@ -3,12 +3,22 @@ import Title from './Title';
 import ElevatedButton from './ElevatedButton';
 import { HeaderTypes } from '../enums';
 import TextField from './TextField';
-import { useState } from 'react';
+import { useEncryption } from 'react-native-text-encryption';
+import { useDecryption } from '../../../src/Init/useDecryption';
 
 function EncryptionForm() {
-  const [message, setMessage] = useState<string | undefined>();
-  const [result, setResult] = useState<string | undefined>();
+  const { plainText, setPlainText, cipherText, caeserCipherEncryption } =
+    useEncryption();
 
+  const { caeserCipherDecryption } = useDecryption();
+
+  const handleEncrypt = () => {
+    caeserCipherEncryption(plainText, 3);
+  };
+
+  const handleDecrypt = () => {
+    caeserCipherDecryption(plainText, 3);
+  };
   return (
     <View style={styles.container}>
       <Title headerStyle={HeaderTypes.TITLE} text="Welcome to Encryptify" />
@@ -20,16 +30,11 @@ function EncryptionForm() {
       <TextField
         label="Enter Message"
         placeholder="Enter Message"
-        setValue={setMessage}
-        value={message}
+        setValue={setPlainText}
+        value={plainText}
       />
-      <TextField
-        label="Result Text"
-        placeholder=""
-        setValue={setResult}
-        value={result}
-      />
-      <ElevatedButton onPress={() => {}} text="Encrypt" />
+      <TextField label="Result Text" placeholder="" value={cipherText} />
+      <ElevatedButton onPress={() => handleEncrypt()} text="Encrypt" />
 
       <Title
         headerStyle={HeaderTypes.LABEL}
@@ -38,7 +43,7 @@ function EncryptionForm() {
       />
 
       <ElevatedButton
-        onPress={() => {}}
+        onPress={() => handleDecrypt()}
         text="Decrypt"
         style={styles.secondaryBtnStyle}
         labelStyle={{ color: 'black' }}
@@ -53,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+
   secondaryBtnStyle: {
     backgroundColor: 'white',
     borderColor: 'black',
