@@ -1,3 +1,4 @@
+import { caeserDeryption } from '../algorithms';
 import { caeserCipher } from './../algorithms/caeserCipher';
 import { useInitializeEncryption } from './useInitializeEncryption';
 
@@ -18,5 +19,25 @@ export const useEncryption = () => {
       setPlainText,
     });
 
-  return { setPlainText, plainText, cipherText, caeserCipherEncryption, key };
+  // Decryption Methods
+  // caeserCipherDecryption
+  const caeserCipherDecryption = (cipherText: string, keyProps: number) =>
+    caeserDeryption({
+      cipherText,
+      keyProps,
+      setCipherText,
+      setKey,
+      setPlainText,
+    });
+
+  return {
+    setPlainText,
+    setCipherText,
+    plainText,
+    cipherText,
+    key,
+    setKey,
+    caeserCipherEncryption,
+    caeserCipherDecryption,
+  };
 };

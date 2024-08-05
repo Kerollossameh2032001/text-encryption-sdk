@@ -5,10 +5,10 @@ import { HeaderTypes } from '../enums';
 import TextField from './TextField';
 import type { FormProps } from '../constants';
 
-function EncryptionForm({
+function DecryptionForm({
   setKey,
   key,
-  setPlainText,
+  setCipherText,
   plainText,
   cipherText,
   handleCurrentEvent,
@@ -19,14 +19,14 @@ function EncryptionForm({
       <Title headerStyle={HeaderTypes.TITLE} text="Welcome to Encryptify" />
       <Title
         headerStyle={HeaderTypes.SUBHEADER}
-        text="Enter Your message to Encrypt it ...!"
+        text="Enter Your message to Decrypt it ...!"
         style={{ paddingBottom: '5%' }}
       />
       <TextField
         label="Enter Message"
         placeholder="Enter Message"
-        setValue={setPlainText}
-        value={plainText}
+        setValue={setCipherText}
+        value={cipherText}
       />
       <TextField
         label="Key"
@@ -37,10 +37,10 @@ function EncryptionForm({
       <TextField
         label="Result Text"
         placeholder="Your Encrypted Message"
-        value={cipherText}
+        value={plainText}
       />
 
-      <ElevatedButton onPress={handleCurrentEvent} text="Encrypt" />
+      <ElevatedButton onPress={handleCurrentEvent} text="Decryption" />
 
       <Title
         headerStyle={HeaderTypes.LABEL}
@@ -50,7 +50,7 @@ function EncryptionForm({
 
       <ElevatedButton
         onPress={switchFlow}
-        text="Decrypt"
+        text="Encryption"
         style={styles.secondaryBtnStyle}
         labelStyle={styles.secondaryLabelStyl}
       />
@@ -58,7 +58,7 @@ function EncryptionForm({
   );
 }
 
-export default EncryptionForm;
+export default DecryptionForm;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

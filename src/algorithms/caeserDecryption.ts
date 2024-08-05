@@ -13,10 +13,13 @@ export const caeserDeryption = ({
   const handleMessage = cipherText.toLocaleLowerCase().replace(/ /g, '');
   const messageLen: number = handleMessage.length;
 
+  console.log(handleMessage);
+
   //Ceaser Implementation
   let plainTextHandling: string = '';
   for (var index = 0; index < messageLen; index++) {
     let position: number = chars.indexOf(handleMessage[index] ?? '') - keyProps;
+    if (position < 0) position += 26;
     position = position % 26;
     plainTextHandling += chars[position];
   }
