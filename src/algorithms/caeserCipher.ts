@@ -1,14 +1,9 @@
 import { chars, type CaeserCipherPorps } from '../constants';
 
-export const caeserCipher = ({
-  plainText,
-  setPlainText,
-  setKey,
-  keyProps,
-  setCipherText,
-}: CaeserCipherPorps) => {
-  setPlainText(plainText);
-  setKey(keyProps);
+export const caeserCipher = ({ plainText, keyProps }: CaeserCipherPorps) => {
+  if (plainText === undefined) throw new Error('PlainText is undefined');
+  if (typeof keyProps !== 'number')
+    throw new Error('The Key must Be Number in Ceaser Cipher');
 
   //handle Key , PlainText, get length of handled plan text
   const handleMessage = plainText.toLocaleLowerCase().replace(/ /g, '');
@@ -22,6 +17,5 @@ export const caeserCipher = ({
     cipherHandling += chars[position];
   }
 
-  //set CipherText
-  setCipherText(cipherHandling.toUpperCase());
+  return cipherHandling.toUpperCase();
 };

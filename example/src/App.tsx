@@ -13,23 +13,29 @@ import DecryptionForm from './components/DecryptionForm';
 
 export default function App() {
   const [isEncryptionflow, setIsEncryptionFlow] = useState<boolean>(true);
+  const [plainText, setPlainText] = useState<string | undefined>();
+  const [cipherText, setCipherText] = useState<string | undefined>();
+  const [keyValue, setKeyValue] = useState<string | undefined>();
+
   const {
-    plainText,
-    setPlainText,
-    cipherText,
-    setCipherText,
-    key,
-    setKey,
-    caeserCipherEncryption,
-    caeserCipherDecryption,
+    //caeserCipherEncryption,
+    //caeserCipherDecryption,
+    xorCipherDecryption,
+    xorCipherEncryption,
   } = useEncryption();
 
   const handleEncrypt = () => {
-    caeserCipherEncryption(plainText, Number(key));
+    //let result = caeserCipherEncryption(plainText, Number(key));
+    let result = xorCipherEncryption(plainText, keyValue);
+    console.log(result);
+
+    setCipherText(result);
   };
 
   const handleDecrypt = () => {
-    caeserCipherDecryption(cipherText, Number(key));
+    // let result = caeserCipherDecryption(cipherText, Number(keyValue));
+    let result = xorCipherDecryption(cipherText, keyValue);
+    setPlainText(result);
   };
 
   return (
@@ -42,12 +48,17 @@ export default function App() {
           />
           {isEncryptionflow ? (
             <EncryptionForm
-              switchFlow={() => setIsEncryptionFlow(false)}
+              switchFlow={() => {
+                setCipherText('');
+                setPlainText('');
+                setKeyValue('0');
+                setIsEncryptionFlow(false);
+              }}
               handleCurrentEvent={() => handleEncrypt()}
-              key={key}
+              keyValue={keyValue}
               plainText={plainText}
               cipherText={cipherText}
-              setKey={setKey}
+              setKeyValue={setKeyValue}
               setPlainText={setPlainText}
             />
           ) : (
@@ -56,13 +67,13 @@ export default function App() {
                 setIsEncryptionFlow(true);
                 setCipherText('');
                 setPlainText('');
-                setKey(0);
+                setKeyValue('0');
               }}
               handleCurrentEvent={() => handleDecrypt()}
-              key={key}
+              keyValue={keyValue}
               plainText={plainText}
               cipherText={cipherText}
-              setKey={setKey}
+              setKeyValue={setKeyValue}
               setCipherText={setCipherText}
             />
           )}

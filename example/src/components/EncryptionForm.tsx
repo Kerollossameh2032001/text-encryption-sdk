@@ -6,8 +6,8 @@ import TextField from './TextField';
 import type { FormProps } from '../constants';
 
 function EncryptionForm({
-  setKey,
-  key,
+  setKeyValue,
+  keyValue,
   setPlainText,
   plainText,
   cipherText,
@@ -31,8 +31,8 @@ function EncryptionForm({
       <TextField
         label="Key"
         placeholder="Enter The Key"
-        value={key}
-        setValue={setKey}
+        value={keyValue}
+        setValue={setKeyValue}
       />
       <TextField
         label="Result Text"
