@@ -1,49 +1,12 @@
-import { caeserDeryption, xorCipher } from '../algorithms';
-import { xorDecryption } from '../algorithms/xorDecryption';
-import { caeserCipher } from './../algorithms/caeserCipher';
+import { useEncryptionMehtods } from './useEncryptionMethods';
+import { useDecryptionMethods } from './useDecryptionMethods';
 
 export const useEncryption = () => {
-  // Encryption Method Implement
+  const { caeserCipherEncryption, xorCipherEncryption } =
+    useEncryptionMehtods();
 
-  //caeserCipherEncryption
-  const caeserCipherEncryption = (
-    plainTextProp: string | undefined,
-    keyProps: any
-  ) =>
-    caeserCipher({
-      keyProps,
-      plainText: plainTextProp,
-    });
-
-  const xorCipherEncryption = (
-    plainTextProps: string | undefined,
-    keyProps: any
-  ) =>
-    xorCipher({
-      messageInput: plainTextProps,
-      key: keyProps,
-    });
-
-  //Decryption Methods
-  //caeserCipherDecryption
-  const caeserCipherDecryption = (
-    cipherText: string | undefined,
-    keyProps: any
-  ) =>
-    caeserDeryption({
-      cipherText,
-      keyProps,
-    });
-
-  const xorCipherDecryption = (
-    cipherText: string | undefined,
-    keyProps: any
-  ) => {
-    return xorDecryption({
-      messageInput: cipherText,
-      key: keyProps,
-    });
-  };
+  const { caeserCipherDecryption, xorCipherDecryption } =
+    useDecryptionMethods();
 
   return {
     caeserCipherEncryption,

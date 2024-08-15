@@ -4,6 +4,7 @@ import ElevatedButton from './ElevatedButton';
 import { HeaderTypes } from '../enums';
 import TextField from './TextField';
 import type { FormProps } from '../constants';
+import SelectAlgorithm from './SelectAlgorithm';
 
 function DecryptionForm({
   setKeyValue,
@@ -13,6 +14,8 @@ function DecryptionForm({
   cipherText,
   handleCurrentEvent,
   switchFlow,
+  currentAlgorithm,
+  setCurrentAlgorithm,
 }: FormProps) {
   return (
     <View style={styles.container}>
@@ -33,6 +36,10 @@ function DecryptionForm({
         placeholder="Enter The Key"
         value={keyValue}
         setValue={setKeyValue}
+      />
+      <SelectAlgorithm
+        currentAlgorithm={currentAlgorithm}
+        setCurrentAlgorithm={setCurrentAlgorithm}
       />
       <TextField
         label="Result Text"

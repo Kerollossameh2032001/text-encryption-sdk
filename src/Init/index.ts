@@ -1,2 +1,3 @@
 export { useEncryption } from './useEncryption';
-export { useInitializeEncryption } from './useInitializeEncryption';
+export { useEncryptionMehtods } from './useEncryptionMethods';
+export { useDecryptionMethods } from './useDecryptionMethods';

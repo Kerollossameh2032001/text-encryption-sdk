@@ -4,6 +4,7 @@ import ElevatedButton from './ElevatedButton';
 import { HeaderTypes } from '../enums';
 import TextField from './TextField';
 import type { FormProps } from '../constants';
+import SelectAlgorithm from './SelectAlgorithm';
 
 function EncryptionForm({
   setKeyValue,
@@ -13,27 +14,38 @@ function EncryptionForm({
   cipherText,
   handleCurrentEvent,
   switchFlow,
+  currentAlgorithm,
+  setCurrentAlgorithm,
 }: FormProps) {
   return (
     <View style={styles.container}>
       <Title headerStyle={HeaderTypes.TITLE} text="Welcome to Encryptify" />
+
       <Title
         headerStyle={HeaderTypes.SUBHEADER}
         text="Enter Your message to Encrypt it ...!"
         style={{ paddingBottom: '5%' }}
       />
+
       <TextField
         label="Enter Message"
         placeholder="Enter Message"
         setValue={setPlainText}
         value={plainText}
       />
+
       <TextField
         label="Key"
         placeholder="Enter The Key"
         value={keyValue}
         setValue={setKeyValue}
       />
+
+      <SelectAlgorithm
+        currentAlgorithm={currentAlgorithm}
+        setCurrentAlgorithm={setCurrentAlgorithm}
+      />
+
       <TextField
         label="Result Text"
         placeholder="Your Encrypted Message"
