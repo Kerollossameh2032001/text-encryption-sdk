@@ -6,9 +6,9 @@ import {
 } from 'react-native';
 import EncryptionForm from './components/EncryptionForm';
 import Title from './components/Title';
-import { AlgorithmTypes, HeaderTypes } from './enums';
+import { HeaderTypes } from './enums';
 import { useState } from 'react';
-import { useEncryption } from 'react-native-text-encryption';
+import { AlgorithmTypes, useEncryption } from 'react-native-text-encryption';
 import DecryptionForm from './components/DecryptionForm';
 
 export default function App() {
@@ -20,45 +20,14 @@ export default function App() {
     AlgorithmTypes | undefined
   >();
 
-  const {
-    caeserCipherEncryption,
-    caeserCipherDecryption,
-    xorCipherDecryption,
-    xorCipherEncryption,
-  } = useEncryption();
+  const { encryption, decryption } = useEncryption();
 
   const handleEncrypt = () => {
-    let result: string;
-    switch (currentAlgorithm) {
-      case AlgorithmTypes.CEASER:
-        result = caeserCipherEncryption(plainText, Number(keyValue));
-        setCipherText(result);
-        break;
-      case AlgorithmTypes.XOR:
-        result = xorCipherEncryption(plainText, keyValue);
-        setCipherText(result);
-        break;
-      default:
-        console.log('Algoruthm is Undefind');
-        break;
-    }
+    setCipherText(encryption(plainText, keyValue, currentAlgorithm));
   };
 
   const handleDecrypt = () => {
-    let result: string;
-    switch (currentAlgorithm) {
-      case AlgorithmTypes.CEASER:
-        result = caeserCipherDecryption(cipherText, Number(keyValue));
-        setPlainText(result);
-        break;
-      case AlgorithmTypes.XOR:
-        result = xorCipherDecryption(cipherText, keyValue);
-        setPlainText(result);
-        break;
-      default:
-        console.log('Algoruthm is Undefind');
-        break;
-    }
+    setPlainText(decryption(cipherText, keyValue, currentAlgorithm));
   };
 
   return (
